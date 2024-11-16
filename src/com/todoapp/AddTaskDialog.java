@@ -2,8 +2,6 @@ package com.todoapp;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -11,11 +9,12 @@ public class AddTaskDialog extends JDialog {
     private JTextField titleField;
     private JTextField descriptionField;
     private JTextField dueDateField;
+    private JComboBox<String> categoryComboBox; // Category dropdown
     private boolean isConfirmed = false;
 
     public AddTaskDialog(Frame parent) {
         super(parent, "Add Task", true);
-        setLayout(new GridLayout(4, 2));
+        setLayout(new GridLayout(5, 2));
 
         // Input fields
         add(new JLabel("Title:"));
@@ -30,24 +29,20 @@ public class AddTaskDialog extends JDialog {
         dueDateField = new JTextField();
         add(dueDateField);
 
+        add(new JLabel("Category:"));
+        categoryComboBox = new JComboBox<>(new String[]{"Uncategorized", "Work", "Personal", "Others"});
+        add(categoryComboBox);
+
         // Buttons
         JButton confirmButton = new JButton("Add");
-        confirmButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isConfirmed = true;
-                dispose();
-            }
+        confirmButton.addActionListener(e -> {
+            isConfirmed = true;
+            dispose();
         });
         add(confirmButton);
 
         JButton cancelButton = new JButton("Cancel");
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        cancelButton.addActionListener(e -> dispose());
         add(cancelButton);
 
         pack();
@@ -63,7 +58,8 @@ public class AddTaskDialog extends JDialog {
             String title = titleField.getText();
             String description = descriptionField.getText();
             LocalDate dueDate = LocalDate.parse(dueDateField.getText());
-            return new Task(title, description, dueDate);
+            String category = (String) categoryComboBox.getSelectedItem();
+            return new Task(title, description, dueDate, false, category);
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Invalid date format. Please use YYYY-MM-DD.", "Error", JOptionPane.ERROR_MESSAGE);
             return null;

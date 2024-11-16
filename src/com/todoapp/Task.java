@@ -8,21 +8,24 @@ public class Task implements Serializable {
     private String description;
     private LocalDate dueDate;
     private boolean completed;
+    private String category;
 
-    // Constructor with default 'completed' value
+    // Constructor without category
     public Task(String title, String description, LocalDate dueDate) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.completed = false;
+        this.category = "Uncategorized"; // Default category
     }
 
-    // Constructor with all parameters
-    public Task(String title, String description, LocalDate dueDate, boolean completed) {
+    // Constructor with all parameters including category
+    public Task(String title, String description, LocalDate dueDate, boolean completed, String category) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.completed = completed;
+        this.category = category;
     }
 
     // Getters and setters
@@ -58,12 +61,22 @@ public class Task implements Serializable {
         this.completed = completed;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
                 "title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 ", dueDate=" + dueDate +
                 ", completed=" + completed +
+                ", category='" + category + '\'' +
                 '}';
     }
 }

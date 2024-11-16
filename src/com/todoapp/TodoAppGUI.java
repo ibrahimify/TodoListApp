@@ -58,6 +58,78 @@ public class TodoAppGUI extends JFrame {
             }
         });
 
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = taskTable.getSelectedRow();
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(TodoAppGUI.this, "Please select a task to edit.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // Get current task details
+                String currentTitle = (String) tableModel.getValueAt(selectedRow, 0);
+                String currentDescription = (String) tableModel.getValueAt(selectedRow, 1);
+                String currentDueDate = tableModel.getValueAt(selectedRow, 2).toString();
+                boolean currentCompleted = (boolean) tableModel.getValueAt(selectedRow, 3);
+
+                // Show edit dialog
+                EditTaskDialog dialog = new EditTaskDialog(TodoAppGUI.this, currentTitle, currentDescription, currentDueDate, currentCompleted);
+                dialog.setVisible(true);
+
+                if (dialog.isConfirmed()) {
+                    Task updatedTask = dialog.getUpdatedTask();
+                    if (updatedTask != null) {
+                        // Update task list and table
+                        tasks.get(selectedRow).setTitle(updatedTask.getTitle());
+                        tasks.get(selectedRow).setDescription(updatedTask.getDescription());
+                        tasks.get(selectedRow).setDueDate(updatedTask.getDueDate());
+                        tasks.get(selectedRow).setCompleted(updatedTask.isCompleted());
+
+                        tableModel.setValueAt(updatedTask.getTitle(), selectedRow, 0);
+                        tableModel.setValueAt(updatedTask.getDescription(), selectedRow, 1);
+                        tableModel.setValueAt(updatedTask.getDueDate(), selectedRow, 2);
+                        tableModel.setValueAt(updatedTask.isCompleted(), selectedRow, 3);
+                    }
+                }
+            }
+        });
+
+        // Delete button action
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = taskTable.getSelectedRow();
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(TodoAppGUI.this, "Please select a task to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // Confirm before deleting
+                int confirm = JOptionPane.showConfirmDialog(
+                        TodoAppGUI.this,
+                        "Are you sure you want to delete this task?",
+                        "Confirm Delete",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Remove the task from the list and table
+                    tasks.remove(selectedRow);
+                    tableModel.removeRow(selectedRow);
+                }
+            }
+        });
+
+        // Save button action
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Save tasks to file
+                TaskManager.saveTasks(tasks);
+                JOptionPane.showMessageDialog(TodoAppGUI.this, "Tasks saved successfully.", "Save Tasks", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
 
         // Display the frame
         setVisible(true);

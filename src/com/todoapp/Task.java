@@ -9,12 +9,20 @@ public class Task implements Serializable {
     private LocalDate dueDate;
     private boolean completed;
 
-    // Constructor
+    // Constructor with default 'completed' value
     public Task(String title, String description, LocalDate dueDate) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.completed = false;
+    }
+
+    // Constructor with all parameters
+    public Task(String title, String description, LocalDate dueDate, boolean completed) {
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.completed = completed;
     }
 
     // Getters and setters

@@ -111,7 +111,7 @@ The project’s architecture is visually represented by a class diagram, which s
 - **Referencing**: Include a link or embedded image in this section:
   
   ```markdown
-  ![Class Diagram](docs/images/class-diagram.png)
+  ![Class Diagram](C:\WorkStation\BME\SEM 5\Java\TodoListApp\docs\images\class-diagram.png)
   ```
 
 ### Sequence Diagrams

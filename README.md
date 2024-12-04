@@ -102,7 +102,7 @@ TodoListApp/
 
 3. Clone the repository:
    ```bash
-   git clone https://github.com/username/todolistapp.git
+   git clone https://github.com/ibrahimify/TodoListApp.git
    ```
 
 4. Navigate to the project directory:
@@ -135,7 +135,7 @@ The class diagram represents the Todo List Application's architecture, showcasin
 - `TodoAppGUI` provides the user interface, integrating task and category management.
 - `Main` class serves as the application's entry point.
 
-<img src="docs/images/class-diagram.png" width="600" alt="Class Diagram">
+<img src="docs/images/class-diagram.png" width="500" alt="Class Diagram">
 
 ### Sequence Diagrams
 
@@ -152,10 +152,10 @@ The class diagram represents the Todo List Application's architecture, showcasin
 ## User Interface Screenshots
 
 ### Light Mode
-<img src="docs/screenshots/light-mode.png" width="700" alt="Light Mode">
+<img src="docs/screenshots/light-mode.png" width="500" alt="Light Mode">
 
 ### Dark Mode
-<img src="docs/screenshots/dark-mode.png" width="700" alt="Dark Mode">
+<img src="docs/screenshots/dark-mode.png" width="500" alt="Dark Mode">
 
 ---
 
@@ -163,7 +163,7 @@ The class diagram represents the Todo List Application's architecture, showcasin
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/todolistapp.git
+   git clone https://github.com/ibrahimify/TodoListApp.git
    ```
 2. Navigate to the project directory:
    ```bash

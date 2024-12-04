@@ -4,15 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 
 public class AddTaskDialog extends JDialog {
     private JTextField titleField;
     private JTextField descriptionField;
     private JTextField dueDateField;
-    private JComboBox<String> categoryComboBox; // Category dropdown
+    private JComboBox<String> categoryComboBox; // Dropdown for categories
     private boolean isConfirmed = false;
 
-    public AddTaskDialog(Frame parent) {
+    public AddTaskDialog(Frame parent, HashMap<String, Category> categoryMap) {
         super(parent, "Add Task", true);
         setLayout(new GridLayout(5, 2));
 
@@ -30,7 +31,7 @@ public class AddTaskDialog extends JDialog {
         add(dueDateField);
 
         add(new JLabel("Category:"));
-        categoryComboBox = new JComboBox<>(new String[]{"Uncategorized", "Work", "Personal", "Others"});
+        categoryComboBox = new JComboBox<>(categoryMap.keySet().toArray(new String[0])); // Dynamically load categories
         add(categoryComboBox);
 
         // Buttons
@@ -55,10 +56,14 @@ public class AddTaskDialog extends JDialog {
 
     public Task getTask() {
         try {
-            String title = titleField.getText();
-            String description = descriptionField.getText();
-            LocalDate dueDate = LocalDate.parse(dueDateField.getText());
+            String title = titleField.getText().trim();
+            String description = descriptionField.getText().trim();
+            LocalDate dueDate = LocalDate.parse(dueDateField.getText().trim());
             String category = (String) categoryComboBox.getSelectedItem();
+            if (title.isEmpty() || category == null) {
+                JOptionPane.showMessageDialog(this, "Title and Category are required.", "Error", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
             return new Task(title, description, dueDate, false, category);
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Invalid date format. Please use YYYY-MM-DD.", "Error", JOptionPane.ERROR_MESSAGE);

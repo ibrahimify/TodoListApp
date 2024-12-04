@@ -1,4 +1,3 @@
-
 # To-Do List Application
 
 ## Overview
@@ -105,56 +104,27 @@ TodoListApp/
 
 ### Class Diagram
 
-The project’s architecture is visually represented by a class diagram, which showcases the relationships between core components such as `Task`, `Category`, `TaskManager`, and the GUI elements. 
-
-- **Location**: Add the class diagram image under the `/docs/images/` folder in the repository.
-- **Referencing**: Include a link or embedded image in this section:
-  
-  ```markdown
-  ![Class Diagram](C:\WorkStation\BME\SEM 5\Java\TodoListApp\docs\images\class-diagram.png)
-  ```
+![Class Diagram](docs/images/class-diagram.png)
 
 ### Sequence Diagrams
 
-The application features five sequence diagrams representing core functionalities:
-1. **Add Task**: Demonstrates user interaction for creating tasks.
-2. **Edit Task**: Highlights how tasks are updated in the system.
-3. **Delete Task**: Explains the process of removing tasks.
-4. **Filter Tasks**: Shows task filtering based on user-selected criteria.
-5. **Save and Load Categories**: Visualizes data persistence using serialization.
-
-- **Location**: Store the sequence diagrams under `/docs/diagrams/` in the repository.
-- **Referencing**: Add a table or link for each diagram:
-  
-  ```markdown
-  | Diagram Name        | Description                                   | Link                                                                 |
-  |---------------------|-----------------------------------------------|----------------------------------------------------------------------|
-  | Add Task            | Task creation flow.                          | ![Add Task](docs/diagrams/add-task-sequence.png)                    |
-  | Edit Task           | Task modification flow.                      | ![Edit Task](docs/diagrams/edit-task-sequence.png)                  |
-  | Delete Task         | Task deletion process.                       | ![Delete Task](docs/diagrams/delete-task-sequence.png)              |
-  | Filter Tasks        | Filtering tasks based on criteria.           | ![Filter Tasks](docs/diagrams/filter-task-sequence.png)             |
-  | Save and Load Tasks | Saving and loading tasks through persistence.| ![Save and Load](docs/diagrams/save-load-sequence.png)              |
-  ```
+| Diagram Name        | Description                                   | Link                                                |
+|---------------------|-----------------------------------------------|-----------------------------------------------------|
+| Add Task            | Task creation flow.                          | ![Add Task](docs/diagrams/add-task-sequence.png)    |
+| Edit Task           | Task modification flow.                      | ![Edit Task](docs/diagrams/edit-task-sequence.png)  |
+| Delete Task         | Task deletion process.                       | ![Delete Task](docs/diagrams/delete-task-sequence.png) |
+| Filter Tasks        | Filtering tasks based on criteria.           | ![Filter Tasks](docs/diagrams/filter-task-sequence.png) |
+| Save and Load Tasks | Saving and loading tasks through persistence.| ![Save and Load](docs/diagrams/save-load-sequence.png) |
 
 ---
 
 ## User Interface Screenshots
 
-Include screenshots of the application in both light and dark modes for visual reference.
+### Light Mode
+![Light Mode](docs/screenshots/light-mode.png)
 
-- **Light Mode**: A screenshot demonstrating the standard theme.
-- **Dark Mode**: A screenshot showcasing the dark mode toggle.
-
-- **Location**: Store screenshots under `/docs/screenshots/`.
-- **Referencing**: Add them in this section:
-
-  ```markdown
-  ### Light Mode
-  ![Light Mode](docs/screenshots/light-mode.png)
-
-  ### Dark Mode
-  ![Dark Mode](docs/screenshots/dark-mode.png)
-  ```
+### Dark Mode
+![Dark Mode](docs/screenshots/dark-mode.png)
 
 ---
 
@@ -162,7 +132,7 @@ Include screenshots of the application in both light and dark modes for visual r
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/ibrahimify/TodoListApp.git
+   git clone https://github.com/username/todolistapp.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -191,5 +161,3 @@ mvn test
 ## Contributing
 
 Contributions are welcome! Fork the repository and submit a pull request for review.
-
----

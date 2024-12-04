@@ -64,6 +64,28 @@ TodoListApp/
 └── .gitignore
 ```
 
+## Software and Tools Requirements
+
+### Development Environment
+- **IDE**: IntelliJ IDEA
+- **Build Tool**: Apache Maven
+- **Version Control**: Git
+- **Programming Language**: Java 17 or higher
+
+### Minimum System Requirements
+- **Operating System**: Windows 10/11, macOS, or Linux
+- **RAM**: 4 GB (8 GB recommended)
+- **Processor**: Intel Core i3 or equivalent
+- **Disk Space**: 500 MB free space
+
+### Key Technologies
+- Java Swing for GUI
+- Java Serialization for data persistence
+- Maven for dependency management
+- JUnit for unit testing
+
+```
+
 ## Setup Instructions
 
 1. Verify Java installation:
@@ -104,7 +126,16 @@ TodoListApp/
 
 ### Class Diagram
 
-![Class Diagram](docs/images/class-diagram.png)
+The class diagram represents the Todo List Application's architecture, showcasing key components and their interactions:
+
+- `Task` is the core entity representing individual tasks with properties like title, description, and due date.
+- `Category` manages task groupings, allowing tasks to be organized.
+- `TaskManager` handles data persistence, saving and loading categories.
+- Dialog classes (`AddTaskDialog` and `EditTaskDialog`) manage task creation and modification.
+- `TodoAppGUI` provides the user interface, integrating task and category management.
+- `Main` class serves as the application's entry point.
+
+<img src="docs/images/class-diagram.png" width="600" alt="Class Diagram">
 
 ### Sequence Diagrams
 
@@ -121,10 +152,10 @@ TodoListApp/
 ## User Interface Screenshots
 
 ### Light Mode
-![Light Mode](docs/screenshots/light-mode.png)
+<img src="docs/screenshots/light-mode.png" width="700" alt="Light Mode">
 
 ### Dark Mode
-![Dark Mode](docs/screenshots/dark-mode.png)
+<img src="docs/screenshots/dark-mode.png" width="700" alt="Dark Mode">
 
 ---
 

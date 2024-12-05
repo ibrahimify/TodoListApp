@@ -14,7 +14,6 @@ public class TodoAppGUI extends JFrame {
     private HashMap<String, Category> categoryMap;
     private boolean isDarkMode = false;
 
-    // Create the main frame with menu bar and task table (Swing-based GUI)
     public TodoAppGUI(HashMap<String, Category> categoryMap) {
         this.categoryMap = categoryMap;
 
@@ -238,7 +237,6 @@ public class TodoAppGUI extends JFrame {
             if (newTask != null) {
                 String category = newTask.getCategory();
                 categoryMap.computeIfAbsent(category, k -> new Category(category)).addTask(newTask);
-                //After adding a task, TaskManager.saveCategories(categoryMap) is called to persist the updated data.
                 TaskManager.saveCategories(categoryMap); // Save immediately
                 refreshTable(getAllTasks());
                 refreshCategoryPanel(); // Update categories
@@ -299,7 +297,7 @@ public class TodoAppGUI extends JFrame {
         );
 
         if (confirm == JOptionPane.YES_OPTION) {
-            categoryMap.get(category).getTaskssave().removeIf(task -> task.getTitle().equals(title));
+            categoryMap.get(category).getTasks().removeIf(task -> task.getTitle().equals(title));
             refreshTable(getAllTasks());
             TaskManager.saveCategories(categoryMap); // Save immediately
         }

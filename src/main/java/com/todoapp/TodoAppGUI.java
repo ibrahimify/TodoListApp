@@ -212,7 +212,7 @@ public class TodoAppGUI extends JFrame {
         aboutDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         JLabel aboutLabel = new JLabel(
-                "<html><div style='text-align: center;'>To-Do List Application<br>Version 1.0<br>Created by [Your Name]</div></html>",
+                "<html><div style='text-align: center;'>To-Do List Application<br>Version 1.0<br><br>For bugs report,Contact: github.com/ibrahimify</div></html>",
                 SwingConstants.CENTER
         );
         aboutDialog.add(aboutLabel, BorderLayout.CENTER);
@@ -264,9 +264,14 @@ public class TodoAppGUI extends JFrame {
         if (dialog.isConfirmed()) {
             Task updatedTask = dialog.getUpdatedTask();
             if (updatedTask != null) {
+                // First, remove the old task
                 categoryMap.get(category).getTasks().removeIf(task -> task.getTitle().equals(title));
-                categoryMap.computeIfAbsent(updatedTask.getCategory(), k -> new Category(updatedTask.getCategory())).addTask(updatedTask);
 
+                // Add the updated task
+                categoryMap.computeIfAbsent(updatedTask.getCategory(), k -> new Category(updatedTask.getCategory()))
+                        .addTask(updatedTask);
+
+                // Refresh category panel and table
                 refreshCategoryPanel();
                 refreshTable(getAllTasks());
                 TaskManager.saveCategories(categoryMap); // Save immediately
@@ -338,15 +343,18 @@ public class TodoAppGUI extends JFrame {
         for (Component component : components) {
             if (component instanceof JPanel) {
                 JPanel panel = (JPanel) component;
-                if (panel.getBorder() != null && "CATEGORIES".equals(((JLabel) panel.getComponent(0)).getText())) {
-                    // Clear and update the category list
-                    panel.removeAll();
-                    JPanel updatedPanel = createCategoryPanel();
-                    contentPane.remove(panel);
-                    contentPane.add(updatedPanel, BorderLayout.WEST);
-                    revalidate();
-                    repaint();
-                    break;
+                if (panel.getBorder() != null) {
+                    Component firstComponent = panel.getComponent(0);
+                    if (firstComponent instanceof JLabel && "CATEGORIES".equals(((JLabel) firstComponent).getText())) {
+                        // Clear and update the category list
+                        panel.removeAll();
+                        JPanel updatedPanel = createCategoryPanel();
+                        contentPane.remove(panel);
+                        contentPane.add(updatedPanel, BorderLayout.WEST);
+                        revalidate();
+                        repaint();
+                        break;
+                    }
                 }
             }
         }

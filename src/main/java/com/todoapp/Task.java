@@ -3,6 +3,10 @@ package com.todoapp;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Represents a task with a title, description, due date, completion status, and category.
+ * Implements Serializable for saving and loading tasks.
+ */
 public class Task implements Serializable {
     private String title;
     private String description;
